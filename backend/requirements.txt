@@ -5,3 +5,4 @@ PyMySQL==1.2.0
 python-dotenv==1.2.2
 cryptography
 python-multipart
+python-jose[cryptography]
