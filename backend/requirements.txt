@@ -6,3 +6,5 @@ python-dotenv==1.2.2
 cryptography
 python-multipart
 python-jose[cryptography]
+passlib[bcrypt]
+bcrypt
