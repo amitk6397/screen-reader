@@ -9,6 +9,7 @@ from src.utils.db import get_db
 
 from src.admin.policy.controller import (
     create_policy,
+    delete_policy,
     get_all_policies,
     update_policy
 )
@@ -73,3 +74,11 @@ def update_policy_api(
         payload,
         db
     )
+
+
+@router.delete("/{policy_id}")
+def delete_policy_api(
+    policy_id: str,
+    db: Session = Depends(get_db)
+):
+    return delete_policy(policy_id, db)

@@ -4,7 +4,7 @@ import uuid
 from fastapi import HTTPException, UploadFile, status
 from sqlalchemy.orm import Session
 
-from src.admin.books.dtos import BookListResponse
+from src.admin.books.dtos import BookListResponse, BookUpdate
 from src.model import Book
 
 UPLOAD_DIR = "uploads/books"
@@ -94,3 +94,26 @@ def get_all_books(db: Session):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Get books failed: {str(e)}"
         )
+
+
+def update_book(book_id: str, payload: BookUpdate, db: Session):
+    book = db.query(Book).filter(Book.id == book_id).first()
+    if not book:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
+
+    for key, value in payload.model_dump(exclude_unset=True).items():
+        setattr(book, key, value)
+
+    db.commit()
+    db.refresh(book)
+    return book
+
+
+def delete_book(book_id: str, db: Session):
+    book = db.query(Book).filter(Book.id == book_id).first()
+    if not book:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
+
+    db.delete(book)
+    db.commit()
+    return {"success": True, "message": "Book deleted successfully"}

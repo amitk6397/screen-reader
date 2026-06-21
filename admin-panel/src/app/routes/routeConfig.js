@@ -1,0 +1,20 @@
+export const routeConfig = {
+  public: ['/login'],
+  protected: [
+    '/dashboard',
+    '/users',
+    '/users/:id',
+    '/books',
+    '/books/add',
+    '/books/edit/:id',
+    '/books/view/:id',
+    '/onboarding',
+    '/onboarding/add',
+    '/onboarding/edit/:id',
+    '/policies',
+    '/policies/add',
+    '/policies/edit/:id',
+    '/policies/view/:id',
+    '/settings',
+  ],
+}

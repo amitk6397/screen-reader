@@ -20,6 +20,16 @@ class BookResponse(BaseModel):
     isWeek: bool | None = None
 
 
+class BookUpdate(BaseModel):
+    title: str | None = None
+    author: str | None = None
+    description: str | None = None
+    category: str | None = None
+    language: str | None = None
+    is_active: bool | None = None
+    isWeek: bool | None = None
+
+
 class BookListResponse(BaseModel):
     success: bool
     data: List[BookResponse]

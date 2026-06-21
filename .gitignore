@@ -1,0 +1,17 @@
+# Python virtual environments
+backend/.venv/
+backend/__pycache__/
+*.pyc
+**/__pycache__/
+
+# Node/React dependencies and builds
+**/node_modules/
+admin-panel/dist/
+
+# Flutter/Dart build files and cache
+screen-reader/.dart_tool/
+screen-reader/build/
+screen-reader/.flutter-plugins
+screen-reader/.flutter-plugins-dependencies
+screen-reader/.metadata
+screen-reader/pubspec.lock

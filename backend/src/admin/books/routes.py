@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, File, Form, UploadFile, status
 from sqlalchemy.orm import Session
 
-from src.admin.books.controller import create_book, get_all_books
-from src.admin.books.dtos import BookListResponse, BookResponse
+from src.admin.books.controller import create_book, delete_book, get_all_books, update_book
+from src.admin.books.dtos import BookListResponse, BookResponse, BookUpdate
 from src.utils.db import get_db
 
 router = APIRouter(
@@ -41,3 +41,17 @@ def create_book_endpoint(
 @router.get("", response_model=BookListResponse)
 def get_books_endpoint(db: Session = Depends(get_db)):
     return get_all_books(db)
+
+
+@router.put("/{book_id}", response_model=BookResponse)
+def update_book_endpoint(
+    book_id: str,
+    payload: BookUpdate,
+    db: Session = Depends(get_db)
+):
+    return update_book(book_id, payload, db)
+
+
+@router.delete("/{book_id}")
+def delete_book_endpoint(book_id: str, db: Session = Depends(get_db)):
+    return delete_book(book_id, db)

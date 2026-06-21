@@ -76,3 +76,22 @@ def update_policy(
     db.refresh(policy)
 
     return policy
+
+
+def delete_policy(policy_id: str, db: Session):
+    policy = (
+        db.query(Policy)
+        .filter(Policy.id == policy_id)
+        .first()
+    )
+
+    if not policy:
+        raise HTTPException(
+            status_code=404,
+            detail="Policy not found"
+        )
+
+    db.delete(policy)
+    db.commit()
+
+    return {"success": True, "message": "Policy deleted successfully"}

@@ -26,6 +26,7 @@ class Register(Base):
     password = Column(String(255), nullable=False)
     is_active = Column(Boolean, nullable=False, default=True)
     is_superuser = Column(Boolean, nullable=False, default=False)
+    profile_image = Column(String(500), nullable=True)
 
 
 class Policy(Base):
