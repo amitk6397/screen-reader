@@ -35,7 +35,6 @@ class ProfileData {
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       isActive: json['is_active'] ?? true,
-      profileImage: json['profile_image'],
     );
   }
 }

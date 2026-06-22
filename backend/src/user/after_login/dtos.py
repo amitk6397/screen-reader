@@ -17,12 +17,8 @@ class ProfileData(BaseModel):
     name: str
     email: str
     is_active: bool
-    profile_image: Optional[str] = None
 
 
-class ProfileUpdate(BaseModel):
-    name: Optional[str] = None
-    profile_image: Optional[str] = None
 
 
 ProfileResponse.model_rebuild()
